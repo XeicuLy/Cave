@@ -1,8 +1,43 @@
-# Create T3 App
+# このプロジェクト「Cave.」について
+
+このプロジェクトは個人開発されたものです。
+
+Cave.とはプログラミング学習サービスと
+ブログ投稿サイトのハイブリットサービスです。
+インプットとアウトプットを通じて、洞窟にある鍾乳洞のように時間をかけて
+知識を積み重ねてほしいという願いが込められています。
+
+## 開発環境構築方法
+
+```bash
+pnpm install
+pnpm db:push
+pnpm dev
+```
+
+## 技術構成について
+
+| 技術/ツール  | 説明                                             |
+| ------------ | ------------------------------------------------ |
+| Next.js      | Reactベースのフレームワーク                      |
+| NextAuth.js  | 認証機能の提供                                   |
+| Prisma       | データベースアクセス                             |
+| Tailwind CSS | CSSフレームワーク                                |
+| tRPC         | TypeScript向けのRPCライブラリ                    |
+| TypeScript   | 静的型付け言語                                   |
+| Husky        | Gitフック管理のためのツール                      |
+| shadcn/ui    | UIコンポーネントライブラリ                       |
+| pnpm         | Nodeパッケージマネージャ                         |
+| zod          | TypeScript向けのスキーマバリデーションライブラリ |
+| Volta        | Nodeなどのバージョンマネージャ                   |
+
+バージョンの詳細や、その他のツールについては`package.json`を参照してください。
+
+## Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
-## What's next? How do I make an app with this?
+### What's next? How do I make an app with this?
 
 We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
 
@@ -14,7 +49,7 @@ If you are not familiar with the different technologies used in this project, pl
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 
-## Learn More
+### Learn More
 
 To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
 
@@ -23,6 +58,6 @@ To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the fo
 
 You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
 
-## How do I deploy this?
+### How do I deploy this?
 
 Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
