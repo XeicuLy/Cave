@@ -3,8 +3,10 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
+    "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "prettier.configPath": "prettier.config.js"
+  "prettier.configPath": "prettier.config.js",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
