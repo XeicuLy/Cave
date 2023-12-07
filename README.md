@@ -29,7 +29,7 @@ pnpm dev
 | shadcn/ui    | UIコンポーネントライブラリ                       |
 | pnpm         | Nodeパッケージマネージャ                         |
 | zod          | TypeScript向けのスキーマバリデーションライブラリ |
-| Volta        | Nodeなどのバージョンマネージャ                   |
+| Volta        | Nodeなどのバージョン管理ツール                   |
 
 バージョンの詳細や、その他のツールについては`package.json`を参照してください。
 
