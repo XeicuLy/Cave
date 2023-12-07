@@ -17,7 +17,6 @@ const config = [
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.es6,
       },
     },
   },
@@ -31,7 +30,6 @@ const config = [
       globals: {
         ...globals.browser,
         ...globals.node,
-        ...globals.es6,
       },
     },
     rules: {
