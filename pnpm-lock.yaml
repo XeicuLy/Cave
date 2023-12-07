@@ -52,12 +52,18 @@ dependencies:
     version: 3.22.4
 
 devDependencies:
+  '@eslint/js':
+    specifier: ^8.55.0
+    version: 8.55.0
   '@next/eslint-plugin-next':
     specifier: ^14.0.3
     version: 14.0.3
   '@types/eslint':
     specifier: ^8.44.7
     version: 8.44.8
+  '@types/eslint-config-prettier':
+    specifier: ^6.11.3
+    version: 6.11.3
   '@types/node':
     specifier: ^18.17.0
     version: 18.19.3
@@ -79,6 +85,9 @@ devDependencies:
   eslint:
     specifier: ^8.54.0
     version: 8.55.0
+  eslint-config-prettier:
+    specifier: ^9.1.0
+    version: 9.1.0(eslint@8.55.0)
   postcss:
     specifier: ^8.4.31
     version: 8.4.32
@@ -474,6 +483,10 @@ packages:
     resolution: {integrity: sha512-mF7B+K6LjuboX8I1RZgKE5GA/fJhsJ8tKGK2UBt3Bwik7hepEPb4NJgNr7vO6BK5IYwPdBLRLTctRw6XZx0sRg==}
     engines: {node: '>=18.0.0'}
     dev: false
+
+  /@types/eslint-config-prettier@6.11.3:
+    resolution: {integrity: sha512-3wXCiM8croUnhg9LdtZUJQwNcQYGWxxdOWDjPe1ykCqJFPVpzAKfs/2dgSoCtAvdPeaponcWPI7mPcGGp9dkKQ==}
+    dev: true
 
   /@types/eslint@8.44.8:
     resolution: {integrity: sha512-4K8GavROwhrYl2QXDXm0Rv9epkA8GBFu0EI+XrrnnuCl7u8CWBRusX7fXJfanhZTDWSAL24gDI/UqXyUM0Injw==}
@@ -915,6 +928,15 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
+    dev: true
+
+  /eslint-config-prettier@9.1.0(eslint@8.55.0):
+    resolution: {integrity: sha512-NSWl5BFQWEPi1j4TjVNItzYV7dZXZ+wP6I6ZhrBGpChQhZRUaElihE9uRRkcbRnNb76UMKDF3r+WTmNcGPKsqw==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.55.0
     dev: true
 
   /eslint-scope@7.2.2:
