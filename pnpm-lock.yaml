@@ -79,6 +79,9 @@ devDependencies:
   '@types/eslint-config-prettier':
     specifier: ^6.11.3
     version: 6.11.3
+  '@types/eslint__js':
+    specifier: ^8.42.3
+    version: 8.42.3
   '@types/node':
     specifier: ^18.17.0
     version: 18.19.3
@@ -505,6 +508,12 @@ packages:
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
+    dev: true
+
+  /@types/eslint__js@8.42.3:
+    resolution: {integrity: sha512-alfG737uhmPdnvkrLdZLcEKJ/B8s9Y4hrZ+YAdzUeoArBlSUERA2E87ROfOaS4jd/C45fzOoZzidLc1IPwLqOw==}
+    dependencies:
+      '@types/eslint': 8.44.8
     dev: true
 
   /@types/estree@1.0.5:
