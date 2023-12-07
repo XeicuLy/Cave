@@ -21,7 +21,7 @@ reviews:
     - "!**/.husky/**"
     - "!**.json"
     - "!**.lock"
-    - "!.gitingore"
+    - "!.gitignore"
   # パスごとの指示設定
   path_instructions:
     - path: "**.js, **.ts, **.jsx, **.tsx"
