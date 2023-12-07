@@ -19,7 +19,7 @@ const config = [
     languageOptions: {
       parser: tsEsLintParser,
       parserOptions: {
-        project: true,
+        project: "./tsconfig.json",
       },
       globals: {
         ...globals.browser,
