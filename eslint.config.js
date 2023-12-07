@@ -1,25 +1,25 @@
 // @ts-nocheck
-import js from "@eslint/js";
-import tsEsLintPlugin from "@typescript-eslint/eslint-plugin";
-import tsEsLintParser from "@typescript-eslint/parser";
-import eslintConfigPrettier from "eslint-config-prettier";
-import globals from "globals";
+import js from '@eslint/js';
+import tsEsLintPlugin from '@typescript-eslint/eslint-plugin';
+import tsEsLintParser from '@typescript-eslint/parser';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import globals from 'globals';
 
 const config = [
-  { ignores: ["dist"] },
+  { ignores: ['dist'] },
   js.configs.recommended,
   eslintConfigPrettier,
   {
     plugins: {
-      "@typescript-eslint": tsEsLintPlugin,
+      '@typescript-eslint': tsEsLintPlugin,
     },
   },
   {
-    files: ["**/*.ts", "**/*.tsx", "**/*.cts", "**/*.mts"],
+    files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
     languageOptions: {
       parser: tsEsLintParser,
       parserOptions: {
-        project: "./tsconfig.json",
+        project: './tsconfig.json',
       },
       globals: {
         ...globals.browser,
@@ -28,8 +28,8 @@ const config = [
       },
     },
     rules: {
-      ...tsEsLintPlugin.configs["eslint-recommended"].overrides[0].rules,
-      ...tsEsLintPlugin.configs["recommended-type-checked"].rules,
+      ...tsEsLintPlugin.configs['eslint-recommended'].overrides[0].rules,
+      ...tsEsLintPlugin.configs['recommended-type-checked'].rules,
     },
   },
 ];
