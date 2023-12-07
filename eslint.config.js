@@ -13,6 +13,13 @@ const config = [
     plugins: {
       '@typescript-eslint': tsEsLintPlugin,
     },
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es6,
+      },
+    },
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.cts', '**/*.mts'],
