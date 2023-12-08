@@ -1,5 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// これはPrismaのスキーマファイルです。
+// 詳細についてはドキュメントを参照してください: https://pris.ly/d/prisma-schema
 
 generator client {
     provider = "prisma-client-js"
@@ -7,13 +7,14 @@ generator client {
 
 datasource db {
     provider = "sqlite"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
+    // 注意: mysqlやsqlserverを使用する場合、Accountモデルの下にある@db.Textアノテーションをコメント解除します
+    // 詳細は次のリンクを参照してください:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
 
+// 投稿を表すモデル
 model Post {
     id        Int      @id @default(autoincrement())
     name      String
@@ -26,7 +27,7 @@ model Post {
     @@index([name])
 }
 
-// Necessary for Next auth
+// NextAuthに必要なアカウント情報を表すモデル
 model Account {
     id                String  @id @default(cuid())
     userId            String
@@ -45,6 +46,7 @@ model Account {
     @@unique([provider, providerAccountId])
 }
 
+// セッション情報を表すモデル
 model Session {
     id           String   @id @default(cuid())
     sessionToken String   @unique
@@ -53,6 +55,7 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+// ユーザー情報を表すモデル
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -64,6 +67,7 @@ model User {
     posts         Post[]
 }
 
+// メールアドレス確認トークンを表すモデル
 model VerificationToken {
     identifier String
     token      String   @unique

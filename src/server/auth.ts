@@ -6,8 +6,7 @@ import { env } from '@/env';
 import { db } from '@/server/db';
 
 /**
- * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
- * object and keep type safety.
+ * `next-auth`の型のためのモジュール拡張。`session`オブジェクトにカスタムプロパティを追加し、型の安全性を保つことができます。
  *
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
@@ -15,23 +14,26 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string;
-      // ...other properties
+      // ...他のプロパティ
       // role: UserRole;
     } & DefaultSession['user'];
   }
 
   // interface User {
-  //   // ...other properties
+  //   // ...他のプロパティ
   //   // role: UserRole;
   // }
 }
 
 /**
- * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
+ * NextAuth.jsの設定オプション。アダプターやプロバイダー、コールバックなどの構成に使用されます。
  *
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  /**
+   * セッションを処理するためのコールバック。ユーザーIDをセッションオブジェクトに追加します。
+   */
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -41,18 +43,20 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
+  // 提供されたPrismaClientインスタンスを使用したNextAuth.jsのPrismaアダプター。
   adapter: PrismaAdapter(db),
+  // Discord認証プロバイダーの構成。
   providers: [
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
     /**
-     * ...add more providers here.
+     * ...ここに他のプロバイダーを追加してください。
      *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
+     * Discordプロバイダー以外の多くのプロバイダーは、少しの追加作業が必要です。
+     * 例えばGitHubプロバイダーはAccountモデルに`refresh_token_expires_in`フィールドを追加する必要があります。
+     * 使用したいプロバイダーに関する詳細は、NextAuth.jsのドキュメントを参照してください。例:
      *
      * @see https://next-auth.js.org/providers/github
      */
@@ -60,7 +64,7 @@ export const authOptions: NextAuthOptions = {
 };
 
 /**
- * Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file.
+ * `getServerSession`のラッパー。各ファイルで`authOptions`を個別にインポートする必要がないようにします。
  *
  * @see https://next-auth.js.org/configuration/nextjs
  */
