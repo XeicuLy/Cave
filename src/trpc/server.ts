@@ -12,8 +12,8 @@ import { createTRPCContext } from '@/server/api/trpc';
 import { transformer } from './shared';
 
 /**
- * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
- * handling a tRPC call from a React Server Component.
+ * `createTRPCContext` ヘルパーをラップし、React Server Component からの tRPC コールを処理する際に必要なコンテキストを提供します。
+ * このモジュールでは、`api` オブジェクトをエクスポートしています。
  */
 const createContext = cache(() => {
   return createTRPCContext({
@@ -24,6 +24,9 @@ const createContext = cache(() => {
   });
 });
 
+/**
+ * `api` オブジェクトは、tRPC プロキシクライアントを作成し、サーバーコンポーネントで使用されるためのカスタムリンクも提供します。
+ */
 export const api = createTRPCProxyClient<typeof appRouter>({
   transformer,
   links: [
@@ -32,10 +35,13 @@ export const api = createTRPCProxyClient<typeof appRouter>({
         process.env.NODE_ENV === 'development' || (op.direction === 'down' && op.result instanceof Error),
     }),
     /**
-     * Custom RSC link that lets us invoke procedures without using http requests. Since Server
-     * Components always run on the server, we can just call the procedure as a function.
+     * HTTPリクエストを使用せずにプロシージャを呼び出すためのカスタムRSCリンク。
+     * サーバーコンポーネントは常にサーバー上で実行されるため、単純にプロシージャを関数として呼び出すことができます。
      */
     () =>
+      /**
+       * プロシージャを呼び出し、結果をオブザーバーに通知します。
+       */
       ({ op }) =>
         observable((observer) => {
           createContext()

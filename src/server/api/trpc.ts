@@ -1,10 +1,9 @@
 /**
- * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
- * 1. You want to modify request context (see Part 1).
- * 2. You want to create a new middleware or type of procedure (see Part 3).
+ * このファイルを編集する必要はおそらくありません。ただし、次の場合には編集が必要です：
+ * 1. リクエストコンテキストを変更する場合（Part 1を参照）。
+ * 2. 新しいミドルウェアや手続きの種類を作成する場合（Part 3を参照）。
  *
- * TL;DR - This is where all the tRPC server stuff is created and plugged in. The pieces you will
- * need to use are documented accordingly near the end.
+ * TL;DR - ここはtRPCサーバーのすべての重要な部分が作成および接続される場所です。使用する必要がある要素は、最後に適切にドキュメント化されています。
  */
 
 import { initTRPC, TRPCError } from '@trpc/server';
@@ -15,14 +14,13 @@ import { getServerAuthSession } from '@/server/auth';
 import { db } from '@/server/db';
 
 /**
- * 1. CONTEXT
+ * 1. コンテキスト
  *
- * This section defines the "contexts" that are available in the backend API.
+ * このセクションでは、バックエンドAPIで使用可能な「コンテキスト」が定義されています。
  *
- * These allow you to access things when processing a request, like the database, the session, etc.
+ * これにより、リクエストの処理中にデータベース、セッションなどにアクセスできます。
  *
- * This helper generates the "internals" for a tRPC context. The API handler and RSC clients each
- * wrap this and provides the required context.
+ * このヘルパーはtRPCコンテキストの「内部」を生成します。APIハンドラーとRSCクライアントはそれぞれこれをラップし、必要なコンテキストを提供します。
  *
  * @see https://trpc.io/docs/server/context
  */
@@ -37,11 +35,10 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 };
 
 /**
- * 2. INITIALIZATION
+ * 2. 初期化
  *
- * This is where the tRPC API is initialized, connecting the context and transformer. We also parse
- * ZodErrors so that you get typesafety on the frontend if your procedure fails due to validation
- * errors on the backend.
+ * ここで、tRPC APIが初期化され、コンテキストとトランスフォーマーが接続されます。また、
+ * ZodErrorsを解析して、バックエンドでの検証エラーが発生した場合にフロントエンドで型安全性を得ることができます。
  */
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -57,46 +54,44 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 });
 
 /**
- * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)
+ * 3. ルーターおよび手続き（重要な部分）
  *
- * These are the pieces you use to build your tRPC API. You should import these a lot in the
- * "/src/server/api/routers" directory.
+ * これらはtRPC APIを構築するために使用する部分です。これらを "/src/server/api/routers" ディレクトリで頻繁にインポートする必要があります。
  */
 
 /**
- * This is how you create new routers and sub-routers in your tRPC API.
+ * 新しいルーターやサブルーターを作成する方法です。
  *
  * @see https://trpc.io/docs/router
  */
 export const createTRPCRouter = t.router;
 
 /**
- * Public (unauthenticated) procedure
+ * パブリック（未認証）手続き
  *
- * This is the base piece you use to build new queries and mutations on your tRPC API. It does not
- * guarantee that a user querying is authorized, but you can still access user session data if they
- * are logged in.
+ * これは、tRPC APIで新しいクエリやミューテーションを構築する基本的な要素です。ユーザーが
+ * 認証されているかどうかは保証されませんが、ログインしている場合はユーザーセッションデータにアクセスできます。
  */
 export const publicProcedure = t.procedure;
 
-/** Reusable middleware that enforces users are logged in before running the procedure. */
+/** 手続きを実行する前にユーザーがログインしていることを強制する再利用可能なミドルウェア。 */
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
     throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
   return next({
     ctx: {
-      // infers the `session` as non-nullable
+      // `session`を非nullとして推論
       session: { ...ctx.session, user: ctx.session.user },
     },
   });
 });
 
 /**
- * Protected (authenticated) procedure
+ * プロテクトされた（認証済み）手続き
  *
- * If you want a query or mutation to ONLY be accessible to logged in users, use this. It verifies
- * the session is valid and guarantees `ctx.session.user` is not null.
+ * クエリまたはミューテーションがログインしたユーザーにのみアクセス可能であるようにするには、これを使用します。
+ * セッションが有効であり、`ctx.session.user`がnullでないことを保証します。
  *
  * @see https://trpc.io/docs/procedures
  */
