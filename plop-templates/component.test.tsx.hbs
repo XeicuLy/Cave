@@ -1,0 +1,9 @@
+import { render, screen } from '@testing-library/react';
+import { expect, test } from 'vitest';
+import { {{pascalCase name}} } from './{{name}}';
+
+test('テスト', () => {
+  render(<{{pascalCase name}} />);
+  expect(
+    screen.getByRole('heading', { level: 1, name: '{{pascalCase name}}' })).toBeDefined();
+});
