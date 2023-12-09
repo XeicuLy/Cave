@@ -11,6 +11,9 @@
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -39,25 +42,35 @@
   "devDependencies": {
     "@eslint/js": "^8.55.0",
     "@next/eslint-plugin-next": "^14.0.3",
+    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/user-event": "^14.5.1",
     "@types/eslint": "^8.44.7",
     "@types/eslint-config-prettier": "^6.11.3",
     "@types/eslint__js": "^8.42.3",
+    "@types/jsdom": "^21.1.6",
+    "@types/lint-staged": "^13.2.2",
     "@types/node": "^18.17.0",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.0.2",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.54.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^8.0.3",
+    "jsdom": "^23.0.1",
     "lint-staged": "^15.2.0",
     "postcss": "^8.4.31",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.7",
     "prisma": "^5.6.0",
     "tailwindcss": "^3.3.5",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "typesync": "^0.11.1",
+    "vitest": "^1.0.2"
   },
   "ct3aMetadata": {
     "initVersion": "7.24.1"
